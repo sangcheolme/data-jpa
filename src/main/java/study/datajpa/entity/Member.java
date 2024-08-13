@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -18,6 +20,7 @@ import lombok.ToString;
 @Setter
 @ToString(of = {"id", "username", "age"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NamedEntityGraph(name = "Member.all", attributeNodes = @NamedAttributeNode("team"))
 @Entity
 public class Member {
 
@@ -35,6 +38,11 @@ public class Member {
 
     public Member(String username) {
         this.username = username;
+    }
+
+    public Member(String username, int age) {
+        this.username = username;
+        this.age = age;
     }
 
     public Member(String username, int age, Team team) {

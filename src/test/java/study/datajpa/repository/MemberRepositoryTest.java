@@ -328,4 +328,15 @@ class MemberRepositoryTest {
         findMember.setUsername("member2");
     }
 
+    @DisplayName("callCustom")
+    @Test
+    void callCustom() {
+        // given
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+
+        List<Member> result = memberRepository.findMemberCustom();
+        System.out.println("result = " + result);
+    }
+
 }
